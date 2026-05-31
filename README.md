@@ -31,7 +31,7 @@ Upload documents → build a knowledge graph → chat with your data.
 ### 1. Clone / enter the project
 
 ```bash
-cd cognee-local
+cd cognee-rag
 ```
 
 ### 2. Configure your model (optional)
