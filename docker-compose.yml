@@ -1,0 +1,114 @@
+version: '3.9'
+
+services:
+  # ─── Ollama ─────────────────────────────────────────────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    container_name: cognee-ollama
+    restart: unless-stopped
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+    # GPU support — uncomment the block below if you have NVIDIA drivers installed
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list > /dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 15
+      start_period: 60s
+
+  # ─── Model puller (runs once, then exits) ───────────────────────────────────
+  ollama-init:
+    image: ollama/ollama:latest
+    container_name: cognee-ollama-init
+    restart: "no"
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: >
+      sh -c "
+        echo '>>> Pulling LLM: ${LLM_MODEL:-llama3.2:3b}';
+        ollama pull ${LLM_MODEL:-llama3.2:3b};
+        echo '>>> Pulling embeddings: ${EMBEDDING_MODEL:-nomic-embed-text}';
+        ollama pull ${EMBEDDING_MODEL:-nomic-embed-text};
+        echo '>>> Done.';
+      "
+    volumes:
+      - ollama_data:/root/.ollama
+
+  # ─── Backend ────────────────────────────────────────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: cognee-backend
+    restart: unless-stopped
+    depends_on:
+      ollama:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    environment:
+      # ── Default provider (Ollama) — overridden at runtime via /config API ──
+      LLM_PROVIDER: ollama
+      LLM_MODEL: ${LLM_MODEL:-llama3.1:8b}
+      LLM_ENDPOINT: http://ollama:11434/v1
+      LLM_API_KEY: ollama
+      EMBEDDING_PROVIDER: ollama
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-nomic-embed-text}
+      EMBEDDING_ENDPOINT: http://ollama:11434/api/embed
+      EMBEDDING_API_KEY: ollama
+      EMBEDDING_DIMENSIONS: "768"
+      HUGGINGFACE_TOKENIZER: nomic-ai/nomic-embed-text-v1.5
+
+      # ── Chunking ──
+      COGNEE_CHUNK_SIZE: "512"
+      COGNEE_CHUNK_OVERLAP: "50"
+
+      # ── Storage ──
+      DATA_ROOT_DIRECTORY: /app/.cognee_data
+      SYSTEM_ROOT_DIRECTORY: /app/.cognee_system
+
+      # ── Auth / telemetry ──
+      ENABLE_BACKEND_ACCESS_CONTROL: "false"
+      TELEMETRY_DISABLED: "true"
+      COGNEE_SKIP_CONNECTION_TEST: "true"
+      OLLAMA_URL: http://ollama:11434
+    volumes:
+      - cognee_data:/app/.cognee_data
+      - cognee_system:/app/.cognee_system
+      - uploads:/app/uploads
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── Frontend ────────────────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: cognee-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+
+volumes:
+  ollama_data:
+  cognee_data:
+  cognee_system:
+  uploads:

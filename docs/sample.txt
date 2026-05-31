@@ -1,0 +1,77 @@
+# The Solar System
+
+## Overview
+The Solar System consists of the Sun and the objects that orbit it, including eight planets,
+their moons, dwarf planets, asteroids, and comets. It formed approximately 4.6 billion years ago
+from the gravitational collapse of a giant molecular cloud.
+
+## The Sun
+The Sun is a G-type main-sequence star at the center of the Solar System. It accounts for
+about 99.86% of the total mass of the Solar System. The Sun's energy is produced by nuclear
+fusion of hydrogen into helium in its core. The surface temperature is approximately 5,500°C.
+
+## The Inner Planets
+
+### Mercury
+Mercury is the smallest planet and the closest to the Sun. It has no atmosphere to retain heat,
+resulting in extreme temperature variations: 430°C during the day and -180°C at night.
+Mercury completes an orbit around the Sun in just 88 Earth days.
+
+### Venus
+Venus is the second planet from the Sun and the hottest planet in the Solar System, with surface
+temperatures reaching 465°C due to a runaway greenhouse effect. Its atmosphere is composed
+mostly of carbon dioxide. A day on Venus (243 Earth days) is longer than its year (225 Earth days).
+
+### Earth
+Earth is the third planet and the only known astronomical object to harbor life. It has one
+natural satellite, the Moon. Earth's atmosphere protects life by absorbing ultraviolet solar
+radiation, warming the surface through heat retention (greenhouse effect), and reducing
+temperature extremes between day and night.
+
+### Mars
+Mars is the fourth planet and the second-smallest in the Solar System. It has two small moons,
+Phobos and Deimos. Mars has the tallest volcano in the Solar System, Olympus Mons (21 km high),
+and the longest valley system, Valles Marineris. Evidence suggests liquid water once flowed on Mars.
+
+## The Outer Planets
+
+### Jupiter
+Jupiter is the fifth planet and the largest in the Solar System — more than twice as massive as
+all other planets combined. It is a gas giant with no solid surface. The Great Red Spot is a
+storm larger than Earth that has been ongoing for at least 350 years. Jupiter has 95 known moons,
+including Europa (which may harbor a subsurface ocean), Ganymede, Io, and Callisto.
+
+### Saturn
+Saturn is the sixth planet and is famous for its stunning ring system made of ice and rock
+particles. It is the least dense planet — it would float on water. Saturn has 146 known moons,
+with Titan being the largest and having a thick nitrogen atmosphere.
+
+### Uranus
+Uranus is the seventh planet and an ice giant. It rotates on its side, with an axial tilt of
+97.77 degrees, likely the result of a massive collision early in its history. Uranus has a faint
+ring system and 27 known moons, named after characters from Shakespeare and Alexander Pope.
+
+### Neptune
+Neptune is the eighth and farthest known planet. It is an ice giant with the strongest winds
+in the Solar System, reaching 2,100 km/h. Neptune has 16 known moons; the largest, Triton,
+orbits in a retrograde direction, suggesting it was captured from the Kuiper Belt.
+
+## Dwarf Planets
+Dwarf planets are celestial bodies that orbit the Sun but haven't cleared their orbital
+neighborhood. The five recognized dwarf planets are: Pluto, Eris, Haumea, Makemake, and Ceres.
+Pluto was reclassified from a planet to a dwarf planet in 2006 by the International Astronomical
+Union.
+
+## The Kuiper Belt and Oort Cloud
+The Kuiper Belt is a region beyond Neptune filled with icy objects. The Oort Cloud is a
+theoretical shell of icy bodies surrounding the Solar System at distances up to 100,000 AU
+from the Sun. Long-period comets originate from the Oort Cloud.
+
+## Key Facts
+- Distance from Sun to Earth: ~150 million km (1 AU)
+- Age of Solar System: ~4.6 billion years
+- Number of planets: 8
+- Number of dwarf planets (recognized): 5
+- Largest planet: Jupiter
+- Smallest planet: Mercury
+- Only planet with known life: Earth
